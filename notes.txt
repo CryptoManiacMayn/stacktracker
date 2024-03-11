@@ -1,1 +1,2 @@
 https://github.com/marketplace/actions/fetch-api-data
+https://www.rapidtables.com/web/color/Web_Safe.html
