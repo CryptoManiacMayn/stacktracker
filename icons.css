@@ -1,0 +1,15 @@
+/* Initial color of the icons */
+.bx-md {
+    color: #000000; /* Black, change as needed */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Color change on hover */
+.bx-md:hover {
+    color: #ff0000; /* Red, change as needed */
+}
+
+/* Color for the clicked state */
+.clicked-icon {
+    color: #00ff00; /* Green, change as needed */
+}

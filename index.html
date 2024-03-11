@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="toggleswitch.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+
+    <div id="sidebar" class="sidebar">
+        <button type="button" class="toggle-btn" onclick="toggleNav()">&#9776;</button>
+        <button type="button" class="nav-item"><span class="icon"><i class='bx bxs-home-alt-2' ></i></span><span class="text">Home</span></button>
+        <button type="button" class="nav-item"><span class="icon"><i class='bx bxs-dashboard' ></i></span><span class="text">Dashboard</span></button>
+        <button type="button" class="nav-item"><span class="icon"><i class='bx bxs-bar-chart-square' ></i></span><span class="text">Analytics</span></button>
+        <button type="button" class="nav-item"><span class="icon"><i class='bx bxs-detail' ></i></span><span class="text">Details</span></button>
+        <button type="button" class="nav-item"><span class="icon"><i class='bx bxs-contact' ></i></span><span class="text">Contact</span></button>
+        
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle-checkbox">
+                <span class="slider round">
+                    <span class="icon sun">&#9728;</span> <!-- Sun Icon -->
+                    <span class="icon moon">&#9790;</span> <!-- Moon Icon -->
+                </span>
+            </label>
+        </div>
+    </div>
+    <div class="main-content">
+        
+        <header class="numbers">
+            <p></span></p>
+        </header>
+        <div class="dashboard">
+            <div class="smallnum">Total MarketCap<br><br> <div class="numbers"><span id="totalSupplyRateProduct"></span></div></div>
+            <div class="smallnum">Box 4<br><br> <div class="numbers">38%</div></div>
+            <div class="smallnum">Box 4<br><br> <div class="numbers">12</div></div>
+            <div class="smallnum">Box 4<br><br> <div class="numbers">171</div></div>
+            <div class="large-area">
+                <table id="cryptoTable">
+                    <thead>
+                        <th>Currency</th>
+                        <th>Icon</th>       
+                        <th>Rate</th>
+                        <th>All Time High</th>
+                        <th>Total Supply</th>
+                        <th>Volume</th>
+                        <th>Cap</th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script defer src="toggleswitch.js"></script>
+<script src="currencyinfo.js"></script>
+<script src="coincode.js"></script>
+
+
+</html>

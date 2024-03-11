@@ -1,0 +1,260 @@
+<!-- next.html -->
+
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href= "icons.css">
+    <input type="button" value="Back" onclick="goBack()">
+
+    <style>
+        h1 {
+            color: aqua;
+        }
+        .container{
+            font-family: Arial, sans-serif;
+            height: 25vh;
+            width: 95%;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            align-content: left;
+            margin-top: 1px;
+            
+        }
+        #flexboxContainer {
+            font-weight: bold;
+        }
+        
+        #flexboxContainer2 {
+            font-weight: bold;
+        }
+        #flexboxContainer3 {
+            font-weight: bold;
+        }
+        #coinPage {
+            font-weight: bolder;
+            font-size: 72px;
+            
+        }
+        
+        .box {
+            width: 250px;
+            height: 110px;
+            font-size: 18px;
+            text-align: left;
+            padding: 25px;
+            border-radius: 15px;
+            
+            box-shadow: 0px 1px 10px 1px rgb(179, 181, 181);
+        }
+        
+        #box1{
+            background-color: rgb(14, 12, 12);
+            align-self: flex-start;
+        }
+        
+        #box2{
+            background-color: rgb(255, 255, 255);
+        }
+        
+        #box3{
+            background-color: rgb(255, 255, 255);
+        }
+        
+        #box4{
+            background-color: rgb(255, 255, 255);
+        }
+        </style>
+    </head>
+    <section>
+        
+        <div class="container"><div id="coinPage"></div></div>
+        
+    </section>
+    <div class="container">
+        <div class="box" id="flexboxContainer"></div>
+        <div class="box" id="flexboxContainer2"></div>
+        <div class="box" id="flexboxContainer3"></div>
+        <div class="box" id="box4">
+            <table id="cryptoTable">
+                <thead>
+                    
+                    <TBODY></TBODY>
+                </thead>
+            </table>
+            
+            
+        </div>
+    </div>
+    <script src="icons.js"></script>
+    
+    <!-- <div id="result"></div> Removed this line -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script>
+        
+        function goBack() {
+            window.history.back()
+        }
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataValue = urlParams.get('data');
+        // const formattedValue = `"${dataValue}"`;
+        // document.getElementById('result').textContent = formattedValue;
+        
+        
+        function formatRate(rate) {
+            if (rate >= 1) {
+                // For numbers 1 and above, format to 2 decimal places
+                return rate.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                });
+            } else {
+                // For numbers less than 1, increase the number of zeros after the decimal
+                // Find how many zeros are needed by getting the position of the first non-zero digit after the decimal
+                let decimalPart = rate.toString().split(".")[1] || "";
+                let nonZeroIndex = decimalPart.search(/[1-9]/);
+                let totalDigits = nonZeroIndex + 6; // Ensure at least three significant digits after the first non-zero digit
+                return rate.toFixed(totalDigits);
+            }
+        }
+        
+        function formatLargers(totalSupply) {
+            if (totalSupply >= 1) {
+                // For numbers 1 and above, format to 2 decimal places
+                return totalSupply.toLocaleString("en-US", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2,
+                });
+            } else {
+                // For numbers less than 1, increase the number of zeros after the decimal
+                // Find how many zeros are needed by getting the position of the first non-zero digit after the decimal
+                let decimalPart = totalSupply.toString().split(".")[1] || "";
+                let nonZeroIndex = decimalPart.search(/[1-9]/);
+                let totalDigits = nonZeroIndex + 6; // Ensure at least three significant digits after the first non-zero digit
+                return totalSupply.toFixed(totalDigits);
+            }
+        }
+        
+        
+        
+        fetch(new Request("https://api.livecoinwatch.com/coins/map"), {
+            method: "POST",
+            headers: new Headers({
+                "content-type": "application/json",
+                "x-api-key": "8f581a9e-b13f-4942-967e-f9fe8c147828",
+            }),
+            body: JSON.stringify({
+                codes: [
+                    dataValue,
+                ],
+                currency: "USD",
+                sort: "rank",
+                order: "ascending",
+                offset: 0,
+                limit: 0,
+                meta: true,
+            }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            const flexboxContainer = document.getElementById("flexboxContainer");
+            const flexboxContainer2 = document.getElementById("flexboxContainer2");
+            const coinPage = document.getElementById("coinPage");
+            const coinLink = document.getElementById("coinLink");
+            const tableBody = document.getElementById("cryptoTable")
+            
+            data.forEach((coin) => {
+                let wbst = coin.links.website;
+                let cleanedCode = coin.code
+                .replace("___", "")
+                .replace("__", "")
+                .replace("_", "");
+                console.log(wbst); 
+                
+data.forEach((coin) => {
+    let row = '<tr>';
+
+    // List all the possible links you want to check and include
+    const links = [
+        { property: coin.links.website, iconClass: 'bx bx-globe' },
+        { property: coin.links.whitepaper, iconClass: 'bx bxs-note' },
+        { property: coin.links.twitter, iconClass: 'bx bxl-twitter' },
+        { property: coin.links.facebook, iconClass: 'bx bxl-facebook-square' },
+        { property: coin.links.reddit, iconClass: 'bx bxl-reddit' },
+        { property: coin.links.telegram, iconClass: 'bx bxl-telegram' },
+        { property: coin.links.discord, iconClass: 'bx bxl-discord-alt' },
+        { property: coin.links.medium, iconClass: 'bx bxl-medium-square' },
+        { property: coin.links.instagram, iconClass: 'bx bxl-instagram-alt' },
+        { property: coin.links.tiktok, iconClass: 'bx bxl-tiktok' },
+        { property: coin.links.youtube, iconClass: 'bx bxl-youtube' },
+        { property: coin.links.linkedin, iconClass: 'bx bxl-linkedin-square' },
+        { property: coin.links.twitch, iconClass: 'bx bxl-twitch' },
+        { property: coin.links.spotify, iconClass: 'bx bxl-spotify' },
+        { property: coin.links.soundcloud, iconClass: 'bx bxl-soundcloud' },
+    ];
+
+    // Iterate through each link and only add it if the property exists
+    links.forEach(link => {
+        if (link.property) {
+            row += `<td><a href="${link.property}" target="_blank"><i class='${link.iconClass} bx-md'></i></a></td>`;
+        }
+    });
+
+    row += '</tr>';
+
+    // Append the row to the table body
+    tableBody.innerHTML += row;
+});
+
+
+                        
+
+                const coinContainer2 = document.createElement("div");
+                    coinContainer2.classList.add("coinContainer2");
+                const allTimeHighElement = document.createElement("div");
+                    allTimeHighElement.textContent = coin.allTimeHigh;
+                const circulatingSupplyElement = document.createElement("div");
+                    circulatingSupplyElement.textContent = `Circulating Supply: ${coin.circulatingSupply}`;
+                const totalSupplyElement = document.createElement("div");
+                    totalSupplyElement.textContent = `Total Supply: ${coin.totalSupply}`;
+                const maxSupplyElement = document.createElement("div");
+                    maxSupplyElement.textContent = `Max Supply: ${coin.maxSupply}`;
+                        
+                        coinContainer2.appendChild(allTimeHighElement);
+                        coinContainer2.appendChild(circulatingSupplyElement);
+                        coinContainer2.appendChild(totalSupplyElement);
+                        coinContainer2.appendChild(maxSupplyElement);
+                        flexboxContainer2.appendChild(coinContainer2);
+                        
+                        
+                        const coinContainer = document.createElement("div");
+                        coinContainer.classList.add("coinContainer");
+                        const codeElement = document.createElement("div");
+                        codeElement.textContent = cleanedCode;
+                        const rateElement = document.createElement("div");
+                        rateElement.textContent = `Rate: ${formatRate(coin.rate)}`;
+                        const volumeElement = document.createElement("div");
+                        volumeElement.textContent = `Volume: ${coin.volume}`;
+                        const capElement = document.createElement("div");
+                        capElement.textContent = `Market Cap: ${coin.cap}`;
+                        
+                        coinPage.appendChild(codeElement);
+                        coinContainer.appendChild(rateElement);
+                        coinContainer.appendChild(volumeElement);
+                        coinContainer.appendChild(capElement);
+                        flexboxContainer.appendChild(coinContainer);
+                        
+                    });
+                });
+                
+
+                </script>

@@ -1,0 +1,41 @@
+.smallnum {
+    background-color: var(--sidebar-bg-color);
+    color: rgb(85, 0, 255);
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+    border-radius: 10px;
+    box-shadow: .1px 0px 5px 1px rgb(40, 148, 255, 0.2);
+}
+
+.numbers {
+    color: black;
+    font-size: x-large;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.5s;
+    color: black;
+}
+
+.main-content.collapsed {
+    margin-left: 80px;
+}
+
+header {
+    background-color: var(--sidebar-bg-color);
+    color: var(--large-area-bg-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: .1px 0px 5px 1px rgb(40, 148, 255, 0.2);
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}

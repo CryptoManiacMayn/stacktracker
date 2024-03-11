@@ -1,0 +1,126 @@
+:root {
+    --background-color: #F6F9FF;
+    --text-color: rgb(0, 0, 0);
+    --sidebar-bg-color: #FFFFFF;
+    --main-bg-color: #F6F9FF;
+    --box-bg-color: #ddd;
+    --large-area-bg-color: #ffffff;
+    --button-hover-color: #D7E6FB;
+    --sidebar-buton-color:#2894FF;
+    --sidebar-text-color: rgb(0, 0, 0);
+    --table-color: #0080ff;
+    --theader-color: rgb(16, 0, 244);
+    --table-hover-color:#D7E6FB;
+    --tabletxt-hover-color:black;
+}
+
+[data-theme="dark"] {
+    --background-color: #222222;
+    --text-color: #ffffff;
+    --sidebar-bg-color: #000000;
+    --main-bg-color: rgb(28, 28, 28);
+    --box-bg-color: #666;
+    --large-area-bg-color: #bbb;
+    --button-hover-color: #819cd8;
+    --sidebar-text-color: rgb(255, 255, 255);
+    --table-color: #1f2020;
+    --theader-color: black;
+    --table-hover-color:rgb(31, 30, 30);
+    --tabletxt-hover-color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.sidebar {
+    background-color: var(--sidebar-bg-color);
+    color: midnightblue;
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    border-radius: solid 1px #2894FF;
+    box-shadow: .1px 0px 5px 1px rgb(40, 148, 255, 0.2);    
+}
+
+.sidebar .nav-item .icon {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 35px;
+    padding: 5px 15px 5px 10px;
+}
+
+.sidebar.collapsed {
+    width: 75px;
+}
+
+.sidebar.collapsed .text {
+    display: none;
+}
+
+.sidebar .nav-item {
+    display: flex;
+    align-items: center;    
+    border: none;
+    background: var(--main-bg-color);
+    color: var(--sidebar-text-color);
+    text-align: left;
+    width: 90%;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.sidebar .nav-item:hover {
+    background-color: var(--button-hover-color);
+    color: var(--sidebar-text-color);
+    transition: 0.4s;
+}
+
+
+
+.large-area {
+    background-color: var(--sidebar-bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    flex-basis: 100%;
+    border-radius: 10px;
+    box-shadow: .1px 0px 5px 1px rgb(40, 148, 255, 0.2);
+}
+
+.toggle-btn {
+    height: 35px;
+    background-color: var(--sidebar-button-color);
+    border: none;
+    color: white;
+    padding: 20px 31px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar, .main-content {
+    width: 100%;
+    margin-left: 0;
+    }
+    
+    .sidebar {
+    height: auto;
+    }
+    
+    .sidebar.collapsed {
+    width: 100%;
+    }
+}
+
